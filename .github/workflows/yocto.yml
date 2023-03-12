@@ -1,0 +1,35 @@
+name: yocto
+
+on:
+  workflow_dispatch:
+
+jobs:
+  yocto:
+    runs-on: [self-hosted, Linux, X64, Yocto]
+    strategy:
+      matrix:
+        yocto: [kirkstone]
+        version: [5.15.71-2.2.0]
+        distro: [fsl-imx-xwayland]
+        machine: [imx8mpevk]
+        image: [imx-image-multimedia]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup
+        env:
+          DISTRO: ${{ matrix.distro }}
+          MACHINE: ${{ matrix.machine }}
+          EULA: 1
+        run: |
+          repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-${{ matrix.yocto }} -m imx-${{ matrix.version }}.xml
+          repo sync -d -j 4
+      - name: Download
+        env:
+          DISTRO: ${{ matrix.distro }}
+          MACHINE: ${{ matrix.machine }}
+          EULA: 1
+        run: |
+          source ./imx-setup-release.sh -b build_${{ matrix.machine }}
+          bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ matrix.image }} --runall=fetch
