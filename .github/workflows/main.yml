@@ -1,4 +1,4 @@
-name: yocto
+name: main
 
 on:
   workflow_dispatch:
@@ -57,3 +57,19 @@ jobs:
         run: |
           source ./imx-setup-release.sh -b build_${{ inputs.machine }}
           bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }} --runall=fetch
+      - name: Build Image
+        env:
+          DISTRO: ${{ inputs.distro }}
+          MACHINE: ${{ inputs.machine }}
+          EULA: 1
+        run: |
+          source ./imx-setup-release.sh -b build_${{ inputs.machine }}
+          bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }}
+      - name: Build SDK
+        env:
+          DISTRO: ${{ inputs.distro }}
+          MACHINE: ${{ inputs.machine }}
+          EULA: 1
+        run: |
+          source ./imx-setup-release.sh -b build_${{ inputs.machine }}
+          bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }} -c populate_sdk
