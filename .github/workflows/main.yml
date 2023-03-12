@@ -28,6 +28,11 @@ on:
         - imx-image-core
         - imx-image-multimedia
         - imx-image-full
+      version:
+        description: 'Version'
+        required: true
+        default: '5.15.71-2.2.0'
+        type: string
 
 jobs:
   yocto:
