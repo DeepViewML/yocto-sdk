@@ -2,12 +2,7 @@
 
 This repository provides Yocto configuration and build scripts for building a Yocto SDK with VisionPack SDK for various platforms.
 
-# Platform Versions
+# NXP Platforms
 
-Various platforms and versions are hosted on unique branches which are summarized here.
-
-- NXP
-	- nxp-5.15.72-2.2.0
-- Boundary Devices
-	- boundary-kirkstone
+This branch builds for NXP platforms using NXP Yocto 5.15.71-2.2.0.
 
