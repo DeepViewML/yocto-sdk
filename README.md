@@ -4,5 +4,4 @@ This repository provides Yocto configuration and build scripts for building a Yo
 
 # NXP Platforms
 
-This branch builds for NXP platforms using NXP Yocto 5.15.71-2.2.0.
-
+This branch builds for NXP platforms using NXP Yocto 5.15.y series of releases.
