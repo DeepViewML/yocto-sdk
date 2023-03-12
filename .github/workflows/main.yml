@@ -1,9 +1,5 @@
 name: yocto
 
-defaults:
-  run:
-    shell: bash -ieo pipefail {0}
-
 on:
   workflow_dispatch:
 
@@ -27,8 +23,8 @@ jobs:
           MACHINE: ${{ matrix.machine }}
           EULA: 1
         run: |
-          repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-${{ matrix.yocto }} -m imx-${{ matrix.version }}.xml
-          repo sync -d -j 4
+          $HOME/bin/repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-${{ matrix.yocto }} -m imx-${{ matrix.version }}.xml
+          $HOME/bin/repo sync -d -j 4
       - name: Download
         env:
           DISTRO: ${{ matrix.distro }}
