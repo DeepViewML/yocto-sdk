@@ -1,0 +1,14 @@
+name: yocto
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  yocto:
+    runs-on: [self-hosted, Linux, X64, Yocto]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
