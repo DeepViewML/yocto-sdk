@@ -7,7 +7,7 @@ This repository provides Yocto configuration and build scripts for building a Yo
 Various platforms and versions are hosted on unique branches which are summarized here.
 
 - NXP
-	- nxp-5.15.72-2.2.0
+	- [nxp-5.15.y](https://github.com/DeepViewML/yocto-sdk/tree/nxp-5.15.y)
 - Boundary Devices
 	- boundary-kirkstone
 
