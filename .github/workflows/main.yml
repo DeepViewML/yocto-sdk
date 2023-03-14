@@ -58,6 +58,7 @@ jobs:
           EULA: 1
         run: |
           source ./imx-setup-release.sh -b build_${{ inputs.machine }}
+          if ! grep -q meta-deepview conf/bblayers.conf ; then bitbake add-layer $GITHUB_WORKSPACE/sources/meta-deepview ; fi
           bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }} --runall=fetch
       - name: Build Image
         env:
