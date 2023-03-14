@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <remote alias="repo" fetch="https://github.com/DeepviewML" name="deepview"/>
+    <project name="meta-deepview" path="layers/meta-deepview" remote="deepview" revision="master"/>
+</manifest>
