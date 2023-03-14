@@ -60,7 +60,7 @@ jobs:
           EULA: 1
         run: |
           source ./imx-setup-release.sh -b build_${{ inputs.machine }}
-          if ! grep -q meta-deepview conf/bblayers.conf ; then bitbake-layers add-layer $GITHUB_WORKSPACE/sources/meta-deepview ; fi
+          bitbake-layers add-layer $GITHUB_WORKSPACE/sources/meta-deepview
           bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }} --runall=fetch
       - name: Build Image
         env:
@@ -69,6 +69,7 @@ jobs:
           EULA: 1
         run: |
           source ./imx-setup-release.sh -b build_${{ inputs.machine }}
+          bitbake-layers add-layer $GITHUB_WORKSPACE/sources/meta-deepview
           bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }}
       - name: Build SDK
         env:
@@ -77,4 +78,5 @@ jobs:
           EULA: 1
         run: |
           source ./imx-setup-release.sh -b build_${{ inputs.machine }}
+          bitbake-layers add-layer $GITHUB_WORKSPACE/sources/meta-deepview
           bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }} -c populate_sdk
