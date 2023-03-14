@@ -48,6 +48,8 @@ jobs:
           EULA: 1
         run: |
           $HOME/bin/repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-kirkstone -m imx-${{ inputs.version }}.xml
+          mkdir -p .repo/local_manifests
+          cp visionpack.xml .repo/local_manifests
           $HOME/bin/repo sync -d -j 4
       - name: Download
         env:
