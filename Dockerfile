@@ -3,14 +3,12 @@ ARG MACHINE
 ARG VERSION
 ARG DISTRO
 ARG IMAGE
-ARG SONAR_SCANNER_VERSION
 
 FROM mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-20.04
 ARG MACHINE
 ARG VERSION
 ARG DISTRO
 ARG IMAGE
-ARG SONAR_SCANNER_VERSION
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 COPY yocto-sdk-${MACHINE}-${VERSION}.sh /tmp/
@@ -34,17 +32,6 @@ RUN apt-get update && \
 RUN sh /tmp/yocto-sdk-${MACHINE}-${VERSION}.sh -y -d /opt/yocto
 RUN rm /tmp/yocto-sdk-${MACHINE}-${VERSION}.sh
 RUN ln -sf `ls /opt/yocto | grep environment` /opt/yocto/environment
-
-RUN curl -o /tmp/build-wrapper-linux-x86.zip https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && \
-    unzip -j /tmp/build-wrapper-linux-x86.zip -d /usr/local/bin && \
-    ln -sf build-wrapper-linux-x86-64 /usr/local/bin/build-wrapper && \
-    rm -rf /tmp/build-wrapper-linux-x86.zip
-
-RUN curl -o /tmp/sonar-scanner-cli-${SONAR_SCANNER_VERSION}.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}.zip && \
-    unzip /tmp/sonar-scanner-cli-${SONAR_SCANNER_VERSION}.zip -d /tmp && \
-    cp /tmp/sonar-scanner-${SONAR_SCANNER_VERSION}/bin/sonar-scanner /usr/local/bin && \
-    cp /tmp/sonar-scanner-${SONAR_SCANNER_VERSION}/lib/sonar-scanner-cli-${SONAR_SCANNER_VERSION}.jar /usr/local/lib && \
-    rm -rf /tmp/sonar-scanner-*
 
 WORKDIR /work
 COPY env.sh /

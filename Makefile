@@ -1,4 +1,3 @@
-SONAR_SCANNER_VERSION ?= 4.8.0.2856
 REPO ?= ghcr.io/deepviewml/yocto-sdk
 DISTRO ?=
 IMAGE ?=
@@ -16,8 +15,7 @@ build:
 		--build-arg VERSION=$(VERSION) \
 		--build-arg MACHINE=$(MACHINE) \
 		--build-arg DISTRO=$(DISTRO) \
-		--build-arg IMAGE=$(IMAGE) \
-		--build-arg SONAR_SCANNER_VERSION=$(SONAR_SCANNER_VERSION)
+		--build-arg IMAGE=$(IMAGE)
 
 push:
 	docker push $(REPO):$(TAG)
