@@ -112,4 +112,4 @@ jobs:
             DISTRO=${{ inputs.distro }}
             IMAGE=${{ inputs.image }}
           push: ${{ inputs.publish }}
-          tags: deepviewml/yocto-sdk:${{ inputs.machine }}-${{ inputs.version }}
+          tags: ghcr.io/deepviewml/yocto-sdk:${{ inputs.machine }}-${{ inputs.version }}
