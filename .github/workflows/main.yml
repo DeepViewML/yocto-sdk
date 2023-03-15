@@ -103,13 +103,12 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Build Docker
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
-          context: .
-          build-args:
-            MACHINE: ${{ inputs.machine }}
-            VERSION: ${{ inputs.version }}
-            DISTRO: ${{ inputs.distro }}
-            IMAGE: ${{ inputs.image }}
+          build-args: |
+            MACHINE=${{ inputs.machine }}
+            VERSION=${{ inputs.version }}
+            DISTRO=${{ inputs.distro }}
+            IMAGE=${{ inputs.image }}
           push: ${{ inputs.publish }}
           tags: deepviewml/yocto-sdk:${{ inputs.machine }}-${{ inputs.version }}
