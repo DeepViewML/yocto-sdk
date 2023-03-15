@@ -80,3 +80,8 @@ jobs:
           source ./imx-setup-release.sh -b build_${{ inputs.machine }}
           bitbake-layers add-layer $GITHUB_WORKSPACE/sources/meta-deepview
           bitbake --postread=$GITHUB_WORKSPACE/extra.conf ${{ inputs.image }} -c populate_sdk
+      - name: Build Docker
+        run: |
+          cp build_${{ inputs.machine }}/tmp/deploy/sdk/${{ inputs.distro }}-*-${{ inputs.image }}-*-${{ inputs.machine }}-*.sh \
+            yocto-sdk-${{ inputs.machine }}-${{ inputs.version }}.sh
+          make MACHINE=${{ inputs.machine }} VERSION=${{ inputs.version }}
