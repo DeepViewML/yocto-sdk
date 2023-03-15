@@ -1,11 +1,15 @@
 # syntax=docker/dockerfile:1
 ARG MACHINE
 ARG VERSION
+ARG DISTRO
+ARG IMAGE
 ARG SONAR_SCANNER_VERSION
 
 FROM mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-20.04
 ARG MACHINE
 ARG VERSION
+ARG DISTRO
+ARG IMAGE
 ARG SONAR_SCANNER_VERSION
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
@@ -50,4 +54,7 @@ LABEL org.opencontainers.image.vendor="Au-Zone Technologies"
 LABEL org.opencontainers.image.source=https://github.com/deepviewml/yocto-sdk
 LABEL org.opencontainers.image.revision=${MACHINE}-${VERSION}
 LABEL org.opencontainers.image.title="Yocto SDK for VisionPack"
-LABEL com.deepviewml.toolchain.version=${MACHINE}-${VERSION}
+LABEL com.deepviewml.toolchain.machine=${MACHINE}
+LABEL com.deepviewml.toolchain.version=${VERSION}
+LABEL com.deepviewml.toolchain.distro=${DISTRO}
+LABEL com.deepviewml.toolchain.image=${IMAGE}

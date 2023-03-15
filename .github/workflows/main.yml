@@ -41,6 +41,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          clean: false
       - name: Setup
         env:
           DISTRO: ${{ inputs.distro }}
@@ -84,4 +86,4 @@ jobs:
         run: |
           cp build_${{ inputs.machine }}/tmp/deploy/sdk/${{ inputs.distro }}-*-${{ inputs.image }}-*-${{ inputs.machine }}-*.sh \
             yocto-sdk-${{ inputs.machine }}-${{ inputs.version }}.sh
-          make MACHINE=${{ inputs.machine }} VERSION=${{ inputs.version }}
+          make MACHINE=${{ inputs.machine }} VERSION=${{ inputs.version }} DISTRO=${{ inputs.distro }} IMAGE=${{ inputs.image }}
