@@ -105,6 +105,7 @@ jobs:
       - name: Build Docker
         uses: docker/build-push-action@v4
         with:
+          context: $GITHUB_WORKSPACE
           build-args: |
             MACHINE=${{ inputs.machine }}
             VERSION=${{ inputs.version }}
