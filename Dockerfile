@@ -22,6 +22,7 @@ RUN apt-get update && \
     apt-get -y install --no-install-recommends \
     file \
     build-essential \
+    gdb-multiarch \
     cmake \
     ninja-build \
     git \
